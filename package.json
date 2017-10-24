@@ -1,0 +1,37 @@
+{
+  "name": "@cycle/jsonp",
+  "version": "7.1.0",
+  "description": "A Cycle.js Driver for making HTTP requests through JSONP",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "types": "lib/index.d.ts",
+  "author": "Andre Staltz",
+  "license": "MIT",
+  "homepage": "https://cycle.js.org",
+  "repository": "https://github.com/cyclejs/jsonp",
+  "bugs": "https://github.com/cyclejs/jsonp/issues",
+  "dependencies": {
+    "@cycle/run": "*",
+    "jsonp": "0.2.1",
+    "xstream": "*"
+  },
+  "devDependencies": {
+    "@cycle/run": "3.3",
+    "xstream": "11.x.x",
+    "browserify": "13.3.0",
+    "browserify-shim": "3.8.14",
+    "typescript": "2.5.3"
+  },
+  "browserify-shim": {
+    "xstream": "global:xstream"
+  },
+  "scripts": {
+    "lib": "tsc",
+    "dist": "rm -rf dist && mkdir -p dist && npm run lib && npm run browserify",
+    "browserify":
+      "browserify lib/index.js --global-transform=browserify-shim --standalone CycleJSONPDriver --exclude xstream --outfile dist/cycle-jsonp-driver.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
